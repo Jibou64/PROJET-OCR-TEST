@@ -1,0 +1,17 @@
+describe('Connexion', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:4200/')
+    cy.contains('Login').click()
+    cy.get('#mat-input-0').type('yoga@studio.com')
+    cy.get('#mat-input-1').type('test!1234')
+    cy.contains('Submit').click()
+    cy.get('.list').should('exist')
+    cy.contains('Account').click()
+    cy.contains('You are admin')
+    cy.contains('Sessions').click()
+    cy.contains('Edit').should('exist')
+    cy.contains('Create').should('exist')
+    cy.contains('Detail').click()
+    cy.contains('Delete').should('exist')
+  })
+})
