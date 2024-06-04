@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,13 +26,16 @@ export class FormComponent implements OnInit {
     private sessionApiService: SessionApiService,
     private sessionService: SessionService,
     private teacherService: TeacherService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone //
   ) {
   }
 
   public ngOnInit(): void {
     if (!this.sessionService.sessionInformation!.admin) {
-      this.router.navigate(['/sessions']);
+      this.ngZone.run(() => {
+        this.router.navigate(['/sessions']);
+      });
     }
     const url = this.router.url;
     if (url.includes('update')) {

@@ -68,6 +68,23 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+
+        if (signUpRequest.getEmail() == null || signUpRequest.getEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is required!"));
+        }
+
+        if (signUpRequest.getPassword() == null || signUpRequest.getPassword().isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Password is required!"));
+        }
+
+        if (signUpRequest.getFirstName() == null || signUpRequest.getFirstName().isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: First name is required!"));
+        }
+
+        if (signUpRequest.getLastName() == null || signUpRequest.getLastName().isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Last name is required!"));
+        }
+
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()

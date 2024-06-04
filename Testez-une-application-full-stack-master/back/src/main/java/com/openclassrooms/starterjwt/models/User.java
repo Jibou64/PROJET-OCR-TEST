@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "USERS", uniqueConstraints = {
     @UniqueConstraint(columnNames = "email")
 })
+
 @Data
 @Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
