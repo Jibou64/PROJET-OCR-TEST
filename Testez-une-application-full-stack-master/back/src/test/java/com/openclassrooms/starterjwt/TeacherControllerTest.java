@@ -79,9 +79,9 @@ public class TeacherControllerTest {
         teachers.add(teacher2);
 
         List<TeacherDto> teacherDtos = new ArrayList<>();
-        TeacherDto teacherDto1 = new TeacherDto(); // Créez un objet TeacherDto pour simuler le mappage
+        TeacherDto teacherDto1 = new TeacherDto(); // Create DTO Object to simulate Data
         teacherDto1.setId(1L);
-        TeacherDto teacherDto2 = new TeacherDto(); // Créez un objet TeacherDto pour simuler le mappage
+        TeacherDto teacherDto2 = new TeacherDto(); // Create DTO Object to simulate Data
         teacherDto2.setId(2L);
         teacherDtos.add(teacherDto1);
         teacherDtos.add(teacherDto2);

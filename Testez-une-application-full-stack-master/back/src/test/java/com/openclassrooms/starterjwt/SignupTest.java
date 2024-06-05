@@ -25,9 +25,9 @@ public class SignupTest {
     public void testSignupWithValidDetails() {
         // Préparer une requête d'inscription valide
         SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setEmail("Test0@Email.com");
+        signupRequest.setEmail("Test4@Email.com");
         signupRequest.setPassword("test!1234");
-        signupRequest.setFirstName("Test0");
+        signupRequest.setFirstName("Test4");
         signupRequest.setLastName("SignUp0");
 
         // Effectuer l'inscription
