@@ -83,15 +83,15 @@ describe('FormComponent', () => {
     };
 
 
-    // Simuler le comportement d'initialisation du formulaire
+    // Simulate Form Init
     component.ngOnInit();
-    // Remplir les valeurs du formulaire manuellement
+    // Mock an example of SessionForm
     component.sessionForm?.get('name')?.setValue(mockSession.name);
     component.sessionForm?.get('description')?.setValue(mockSession.description);
     component.sessionForm?.get('date')?.setValue(mockSession.date);
     component.sessionForm?.get('teacher_id')?.setValue(mockSession.teacher_id);
 
-    // Vérifier que les valeurs du formulaire correspondent aux valeurs de la session
+    // Check values to pass or not the test
     expect(component.sessionForm?.get('name')?.value).toEqual(mockSession.name);
     expect(component.sessionForm?.get('description')?.value).toEqual(mockSession.description);
     expect(component.sessionForm?.get('date')?.value).toEqual(mockSession.date);

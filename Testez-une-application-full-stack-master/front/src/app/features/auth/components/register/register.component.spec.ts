@@ -93,6 +93,6 @@ describe('RegisterComponent', () => {
     component.submit();
 
     // Assert
-    expect(component.onError).toBe(true); // Error flag should be set to true
+    expect(component.onError).toBe(true);
   });
 });
