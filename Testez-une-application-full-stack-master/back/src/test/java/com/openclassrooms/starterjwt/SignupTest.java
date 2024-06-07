@@ -23,20 +23,16 @@ public class SignupTest {
 
     @Test
     public void testSignupWithValidDetails() {
-        // Préparer une requête d'inscription valide
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setEmail("Test4@Email.com");
         signupRequest.setPassword("test!1234");
         signupRequest.setFirstName("Test4");
         signupRequest.setLastName("SignUp0");
 
-        // Effectuer l'inscription
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est OK (200) ou CREATED (201)
         assertTrue(responseEntity.getStatusCode() == HttpStatus.OK || responseEntity.getStatusCode() == HttpStatus.CREATED);
 
-        // Vérifier que le corps de la réponse contient un message de succès
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertEquals("User registered successfully!", messageResponse.getMessage());
@@ -44,20 +40,16 @@ public class SignupTest {
 
     @Test
     public void testSignupWithExistingEmail() {
-        // Préparer une requête d'inscription avec un email existant
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setEmail("yoga@studio.com");
         signupRequest.setPassword("test!1234");
         signupRequest.setFirstName("NeDoitPas");
         signupRequest.setLastName("Apparaître");
 
-        // Effectuer l'inscription
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est BAD_REQUEST (400)
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        // Vérifier que le corps de la réponse contient un message d'erreur
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertEquals("Error: Email is already taken!", messageResponse.getMessage());
@@ -65,19 +57,15 @@ public class SignupTest {
 
     @Test
     public void testSignupWithMissingEmail() {
-        // Préparer une requête d'inscription avec un champ email manquant
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setPassword("test!1234");
         signupRequest.setFirstName("NeDoitPas");
         signupRequest.setLastName("Apparaître");
 
-        // Effectuer l'inscription
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est BAD_REQUEST (400)
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        // Vérifier que le corps de la réponse contient un message d'erreur
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertEquals("Error: Email is required!", messageResponse.getMessage());
@@ -91,13 +79,10 @@ public class SignupTest {
         signupRequest.setFirstName("NeDoitPas");
         signupRequest.setLastName("Apparaître");
 
-        // Effectuer l'inscription
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est BAD_REQUEST (400)
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        // Vérifier que le corps de la réponse contient un message d'erreur
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertFalse(messageResponse.getMessage().isEmpty());
@@ -111,13 +96,10 @@ public class SignupTest {
         signupRequest.setPassword("test!1234");
         signupRequest.setLastName("Apparaître");
 
-        // Effectuer l'inscription
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est BAD_REQUEST (400)
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        // Vérifier que le corps de la réponse contient un message d'erreur
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertFalse(messageResponse.getMessage().isEmpty());
@@ -125,19 +107,18 @@ public class SignupTest {
 
     @Test
     public void testSignupWithMissingLastName() {
-        // Préparer une requête d'inscription avec un champ nom d'utilisateur manquant
+
         SignupRequest signupRequest = new SignupRequest();
         signupRequest.setEmail("yoga@studio.com");
         signupRequest.setPassword("test!1234");
         signupRequest.setFirstName("NeDoitPas");
 
-        // Effectuer l'inscription
+
         ResponseEntity<?> responseEntity = authController.registerUser(signupRequest);
 
-        // Vérifier que le statut HTTP est BAD_REQUEST (400)
+
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        // Vérifier que le corps de la réponse contient un message d'erreur
         MessageResponse messageResponse = (MessageResponse) responseEntity.getBody();
         assertNotNull(messageResponse);
         assertFalse(messageResponse.getMessage().isEmpty());
